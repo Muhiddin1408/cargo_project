@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block body %}
+
+
+<section id="subheader" class="page-gallery no-bottom" data-stellar-background-ratio="0.5">
+            <div class="inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>Gallery</h1>
+                            <div class="crumb">
+                                <ul>
+                                    <li><a href="index.html">{% trans 'Home' %}</a></li>
+                                    <li>{% trans 'Gallery' %}</li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- subheader close -->
+
+        <div class="clearfix"></div>
+
+        <!-- content begin -->
+        <div id="content" class="no-top no-bottom">
+
+
+            <div id="gallery" class="gallery full-gallery ex-gallery zoom-gallery col-3">
+
+                <!-- gallery item -->
+                {% for gallery in galleries%}
+                <div class="item illustration">
+                    <div class="picframe">
+                        <a href="{{ gallery.image.url }}">
+                            <span class="overlay"></span>
+
+                            <span class="pf_text">
+                                <span class="project-name">
+                                    {% if LANGUAGE_CODE == 'uz' %}
+                                        {{ gallery.title_uz }}
+                                    {% elif LANGUAGE_CODE == 'ru' %}
+                                        {{ gallery.title_ru }}
+                                    {% elif LANGUAGE_CODE == 'tk' %}
+                                        {{ gallery.title_tk }}
+                                    {% else %}
+                                        {{ gallery.title_en }}
+                                    {% endif %}</span>
+                                <span class="small-border"></span>
+                            </span>
+                            <img src="{{ gallery.image.url }}" alt="" />
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+
+{% endblock %}

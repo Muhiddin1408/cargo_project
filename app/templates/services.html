@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block body %}
+    <section id="subheader" class="page-service no-bottom" data-stellar-background-ratio="0.5">
+        <div class="inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>{% trans 'Services'%}</h1>
+                        <div class="crumb">
+                            <div>
+                                <ul>
+                                    <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                                    <li>{% trans 'Services' %}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- subheader close -->
+
+    <div class="clearfix"></div>
+
+    <!-- content begin -->
+    <div id="content" class="no-padding">
+
+        <!-- section begin -->
+        <section class="no-padding">
+            <div class="container-fullwidth">
+                {% for service in services %}
+                <div class="box-service one-fourth">
+                    <div class="bg-color-fx padding-5 text-center">
+                        <h3>{% if LANGUAGE_CODE == 'uz' %}
+                                {{ service.title_uz }}
+                            {% elif LANGUAGE_CODE == 'ru' %}
+                                {{ service.title_ru }}
+                            {% elif LANGUAGE_CODE == 'tk' %}
+                                {{ service.title_tk }}
+                            {% else %}
+                                {{ service.title_en }}
+                            {% endif %}</h3>
+                        <div class="tiny-border margintop10 marginbottom10"></div>
+                        <img src="{{service.image.url}}" class="img-responsive margintop20 marginbottom20 wow fadeInRight"
+                             alt=""/>
+                        <p>{% if LANGUAGE_CODE == 'uz' %}
+                                {{ service.description_uz |safe |slice:":250"}}
+                            {% elif LANGUAGE_CODE == 'ru' %}
+                                {{ service.description_ru |safe |slice:":250"}}
+                            {% elif LANGUAGE_CODE == 'tk' %}
+                                {{ service.description_tk |safe |slice:":250"}}
+                            {% else %}
+                                {{ service.description_en |safe |slice:":250"}}
+                            {% endif %}</p>
+                        <a href="{% url 'services-detail' service.id %}" class="btn-arrow hover-light"><span class="line"></span><span
+                                class="mdi mdi-chevron-right">View Details</span></a>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="clearfix"></div>
+            </div>
+        </section>
+        <!-- section close -->
+
+        <!-- section begin -->
+        <section id="section-cta-2" class="cta light-text" data-stellar-background-ratio="0.5" class="light-text">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="padding30 overlaydark80 wow fadeIn">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h2 class="mb0 mt10">Contact us now to get quote for all your global shipping
+                                        needs</h2>
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    <a href="#" class="btn btn-custom">Contact Us</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section close -->
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block body %}
+
+
+<section id="subheader" class="page-contact no-bottom" data-stellar-background-ratio="0.5">
+    <div class="inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Contact</h1>
+                    <div class="crumb">
+                        <ul>
+                            <li><a href="index.html">{% trans 'Home' %}</a></li>
+                            <li>{% trans 'Contact' %}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- subheader close -->
+
+
+<!-- content begin -->
+<div id="content" class="no-top no-bottom">
+    <section>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% for contact in contacts %}
+                    <div class="expand-box location">
+                        <div class="inner">
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {% trans 'Head Quarter' %}
+                                    <h3><br>
+                                        {% if LANGUAGE_CODE == 'uz' %}
+                                        {{contact.country_uz}}
+                                        {% elif LANGUAGE_CODE == 'ru' %}
+                                        {{contact.country_ru}}
+                                        {% elif LANGUAGE_CODE == 'tk' %}
+                                        {{contact.country_tk}}
+                                        {% else %}
+                                        {{contact.country_en}}
+                                        {% endif %}</h3>
+                                </div>
+                                <div class="col-md-2">
+
+                                    <h5>{% trans 'Address'%}</h5>
+                                    {% if LANGUAGE_CODE == 'uz' %}
+                                    {{contact.address_uz}}
+                                    {% elif LANGUAGE_CODE == 'ru' %}
+                                    {{contact.address_ru}}
+                                    {% elif LANGUAGE_CODE == 'tk' %}
+                                    {{contact.address_tk}}
+                                    {% else %}
+                                    {{contact.address_en}}
+                                    {% endif %}
+                                    <br>
+                                    <span class="btn-arrow btn-open-map"><span class="line"></span><span class="mdi mdi-chevron-right">View on Map</span></span>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <h5>{% trans 'Phone' %}</h5>
+                                    {{contact.phone}}<br>
+                                </div>
+                                <div class="col-md-2">
+                                    <h5>{% trans 'Fax' %}</h5>
+                                    {{contact.fax}}<br>
+                                </div>
+                                <div class="col-md-2">
+                                    <h5>{% trans 'Email'%}</h5>
+                                    {{contact.email}}
+                                </div>
+                                <div class="col-md-2">
+                                    <h5>{% trans 'Social Media'%}</h5>
+                                    <!-- social icons -->
+                                    <div class="social">
+                                        <a href="#"><i class="mdi mdi-facebook"></i></a>
+                                        <a href="#"><i class="mdi mdi-twitter"></i></a>
+                                        <a href="#"><i class="mdi mdi-rss"></i></a>
+                                        <a href="#"><i class="mdi mdi-google-plus"></i></a>
+                                        <a href="#"><i class="mdi mdi-email"></i></a>
+                                    </div>
+                                    <!-- social icons close -->
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="map-container">
+                            <div id="map-1"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="section-contact-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="light-text">
+                        <div class="bg-2 padding30">
+
+                            <h2 class="id-color">Gocargo Commitment</h2>
+                            <div class="tiny-border"></div>
+                            <p class="lead big">
+                                <i>Fell free to asking about Gocargo or Just say hello to us </i>
+                            </p>
+                            <div class="text-center">
+                                <img src="img/contact/truck.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-8">
+                    <form id="contact" class="row form-transparent" name="form1" method="post" action="">
+                        {% csrf_token %}
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="First Name*"/>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="last_name" id="last_name"
+                                   placeholder="Last Name*"/></div>
+
+                        <div class="col-md-6">
+                            <div id="error_email" class="error">Please check your email</div>
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Email*"/>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div id="error_email" class="error">Please check your email</div>
+                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone*"/>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div id="error_message" class="error">Please check your message</div>
+                            <textarea cols="10" rows="10" name="message" id="message" class="form-control"
+                                      placeholder="Your message"></textarea>
+                        </div>
+
+                        <div id="mail_success" class="col-md-12 success">Thank you. Your message has been sent.</div>
+                        <div id="mail_failed" class="col-md-12 error">Error, email not sent</div>
+
+                        <div class="col-md-12">
+                            <p id="btnsubmit">
+                                <input onclick="myFunction()" type="submit" id="send" value="Send" class="btn btn-custom fullwidth"/>
+                            </p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+{% endblock %}
+{% block script %}
+<script>
+function myFunction() {
+  alert("Soved!");
+}
+</script>
+{% endblock %}

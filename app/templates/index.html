@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static i18n tags %}
+{% block body %}
+    <div id="content" class="no-padding">
+        <!-- section begin -->
+        <section id="section-welcome" class="no-padding autoheight light-text">
+            <div class="center-y">
+                <div class="inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="text-ultra-big wow fadeInRight" data-wow-duration="1.5s">
+                                    <span class="id-color">
+                                        {% if LANGUAGE_CODE == 'uz' %}
+                                            {{ carousel.title_uz }}
+                                        {% elif LANGUAGE_CODE == 'ru' %}
+                                            {{ carousel.title_ru }}
+                                        {% elif LANGUAGE_CODE == 'tk' %}
+                                            {{ carousel.title_tk }}
+                                        {% else %}
+                                            {{ carousel.title_en }}
+                                        {% endif %}
+                                    </span><br>
+                                    {% trans 'TRUCK SOLUTIONS' %}<br>
+
+                                    {% trans 'PROVIDER' %}
+                                </h1>
+                                <a href="#" class="btn btn-custom wow fadeInUp" data-wow-duration="2s">
+                                    {% trans 'Get Rate Quote' %}
+                                </a>
+                            </div>
+                            <div class="divider-double"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section close -->
+
+
+        <section class="no-padding mt-90 height90px bg111111 mobile-hide" aria-label="info-box">
+            <div class="container">
+                <div class="row-fluid">
+                    <div class="col-md-4">
+                        <div class="info-box padding20">
+                            <i class="mdi mdi-clock"></i>
+                            <div class="info-box_text">
+                                <div class="info-box_title">{% trans 'Opening Times' %}</div>
+                                <div class="info-box_subtite">
+                                    {% if LANGUAGE_CODE == 'uz' %}
+                                        {{ contact.opening_times_uz }}
+                                    {% elif LANGUAGE_CODE == 'ru' %}
+                                        {{ contact.opening_times_ru }}
+                                    {% elif LANGUAGE_CODE == 'tk' %}
+                                        {{ contact.opening_times_tk }}
+                                    {% else %}
+                                        {{ contact.opening_times_en }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-box padding20">
+                            <i class="mdi mdi-home"></i>
+                            <div class="info-box_text">
+                                <div class="info-box_title">Our Location</div>
+                                <div class="info-box_subtite">
+                                    {% if LANGUAGE_CODE == 'uz' %}
+                                        {{ contact.address_uz }}
+                                    {% elif LANGUAGE_CODE == 'ru' %}
+                                        {{ contact.address_ru }}
+                                    {% elif LANGUAGE_CODE == 'tk' %}
+                                        {{ contact.address_tk }}
+                                    {% else %}
+                                        {{ contact.address_en }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="info-box padding20">
+                            <i class="mdi mdi-phone"></i>
+                            <div class="info-box_text">
+                                <div class="info-box_title">{% trans 'Our Phone' %}</div>
+                                <div class="info-box_subtite">{{ contact.phone }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- section begin -->
+        <section class="no-padding">
+            <div class="container-fluid">
+                <div class="row-fluid table-view fullwidth">
+                    {% for service in services %}
+                        <div class="box-service col-md-3">
+                            <div class="bg-color-fx padding-5 text-center">
+                                <h3>
+                                    {% if LANGUAGE_CODE == 'uz' %}
+                                        {{ service.title_uz }}
+                                    {% elif LANGUAGE_CODE == 'ru' %}
+                                        {{ service.title_ru }}
+                                    {% elif LANGUAGE_CODE == 'tk' %}
+                                        {{ service.title_tk }}
+                                    {% else %}
+                                        {{ service.title_en }}
+                                    {% endif %}
+                                </h3>
+
+                                <div class="tiny-border margintop10 marginbottom10"></div>
+                                <img src="{{ service.image.url }}"
+                                     class="img-responsive margintop20 marginbottom20 wow fadeInRight" alt=""/>
+                                <p>
+                                    {% if LANGUAGE_CODE == 'uz' %}
+                                        {{ service.description_uz | safe |slice:":250" }}
+                                    {% elif LANGUAGE_CODE == 'ru' %}
+                                        {{ service.description_ru | safe |slice:":250" }}
+                                    {% elif LANGUAGE_CODE == 'tk' %}
+                                        {{ service.description_ru |safe|slice:":250" }}
+                                    {% else %}
+                                        {{ service.description_en |safe |slice:":250" }}
+                                    {% endif %}
+                                </p>
+                                <a href="{% url 'services-detail' service.id %}" class="btn-arrow hover-light"><span
+                                        class="line"></span><span class="mdi mdi-chevron-right">{% trans 'View Details' %}</span></a>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </section>
+        <!-- section close -->
+
+        <!-- section begin -->
+        <section id="section-intro-bg" data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-md-12">
+
+                        <div class="light-text">
+                            <div class="row">
+
+
+                                <div class="col-md-6 col-md-offset-3s">
+
+                                    <h2>{% trans 'The Most Progressive Company' %}</h2>
+                                    <div class="divider-deco"><span></span></div>
+                                    <p class="lead">
+                                        {% trans 'Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate' %} </p>
+
+                                    <div class="row">
+                                        {% for blog in blogs|get_home_blogs %}
+                                        <div class="col-md-6">
+                                            <h3><span class="id-color">
+                                                 {% if LANGUAGE_CODE == 'uz' %}
+                                                    {{ blog.title_uz }}
+                                                {% elif LANGUAGE_CODE == 'ru' %}
+                                                    {{ blog.title_ru }}
+                                                {% elif LANGUAGE_CODE == 'tk' %}
+                                                    {{ blog.title_tk }}
+                                                {% else %}
+                                                    {{ blog.title_en }}
+                                                {% endif %}
+                                            </span></h3>
+                                            <p>
+                                               {% if LANGUAGE_CODE == 'uz' %}
+                                                    {{ blog.description_uz | safe |slice:":250" }}
+                                                {% elif LANGUAGE_CODE == 'ru' %}
+                                                    {{ blog.description_ru | safe |slice:":250" }}
+                                                {% elif LANGUAGE_CODE == 'tk' %}
+                                                    {{ blog.description_ru |safe|slice:":250" }}
+                                                {% else %}
+                                                    {{ blog.description_en |safe |slice:":250" }}
+                                                {% endif %}
+                                                <br>
+                                                <br>
+
+                                                <a href="{% url 'blogs-detail' blog.id %}" class="btn btn-custom">{% trans 'Read More' %}</a>
+                                            </p>
+                                        </div>
+                                        {% endfor %}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section close -->
+
+
+        <!-- section begin -->
+        <section id="section-track" class="no-padding light-text alt">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-7 no-padding">
+                                <div class="inner">
+                                    <h3>Track &amp; Trace</h3>
+                                    <span>Already have a load ID, please insert it below</span>
+                                </div>
+                            </div>
+                            <div class="col-md-5 no-padding">
+                                <input class="input-fullwidth" name="track" id="track">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <a id="track-it" href="#section-tracking-result" class="btn-custom btn-fullwidth">Track it</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section close -->
+
+        <!-- section begin -->
+        <section id="section-tracking-result" class="light-text no-margin">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="divider-double"></div>
+                        <div class="text-center">
+                            <h3><span class="grey">Product ID:</span> 112345679087328</h3>
+                        </div>
+
+
+                        <div class="divider-double"></div>
+
+                        <div class="wrapper-line padding40 rounded10 mb80">
+
+
+                            <ul class="progress">
+                                <li><a href="">Accepted</a></li>
+                                <li class="beforeactive"><a href="">Order Processing</a></li>
+                                <li class="active"><a href="">Shipment Pending</a></li>
+                                <li><a href="">Estimated Delivery</a></li>
+                            </ul>
+
+                            <div class="divider-double"></div>
+
+                            <ul class="timeline custom-tl">
+
+                                <li class="timeline-inverted">
+                                    <div class="timeline-date wow zoomIn" data-wow-delay=".2s">
+                                        Nov 03, 2016
+                                        <span>20:07 pm</span>
+                                    </div>
+                                    <div class="timeline-badge success"><i class="fa fa-check-square-o wow zoomIn"></i>
+                                    </div>
+                                    <div class="timeline-panel wow fadeInRight" data-wow-delay=".6s">
+                                        <div class="timeline-body">
+                                            The shipment has been successfully delivered
+                                            <span class="location">Baker Street, UK <a
+                                                    href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&amp;hl=en&amp;t=v&amp;hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+                                                    class="popup-gmaps">view on map</a></span>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="timeline-inverted">
+                                    <div class="timeline-date wow zoomIn" data-wow-delay=".2s">
+                                        Nov 03, 2016
+                                        <span>20:07 pm</span>
+                                    </div>
+                                    <div class="timeline-badge warning"><i class="fa fa-warning wow zoomIn"></i></div>
+                                    <div class="timeline-panel wow fadeInRight" data-wow-delay=".6s">
+                                        <div class="timeline-body">
+                                            The shipment could not be delivered
+                                            <span class="location">Baker Street, UK <a
+                                                    href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&amp;hl=en&amp;t=v&amp;hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+                                                    class="popup-gmaps">view on map</a></span>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="timeline-inverted">
+                                    <div class="timeline-date wow zoomIn" data-wow-delay=".2s">
+                                        Nov 03, 2016
+                                        <span>20:07 pm</span>
+                                    </div>
+                                    <div class="timeline-badge"><i class="fa fa-plane wow zoomIn"></i></div>
+                                    <div class="timeline-panel wow fadeInRight" data-wow-delay=".6s">
+                                        <div class="timeline-body">
+                                            The shipment has arrived in destination country
+                                            <span class="location">Baker Street, UK <a
+                                                    href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&amp;hl=en&amp;t=v&amp;hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+                                                    class="popup-gmaps">view on map</a></span>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="timeline-inverted">
+                                    <div class="timeline-date wow zoomIn" data-wow-delay=".2s">
+                                        Nov 02, 2015
+                                        <span>18:05 pm</span>
+                                    </div>
+                                    <div class="timeline-badge"><i class="fa fa-plane wow zoomIn"></i></div>
+                                    <div class="timeline-panel wow fadeInRight" data-wow-delay=".6s">
+                                        <div class="timeline-body">
+                                            The shipment is being transformed to destination country
+                                            <span class="location">Baker Street, UK <a
+                                                    href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&amp;hl=en&amp;t=v&amp;hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+                                                    class="popup-gmaps">view on map</a></span>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="timeline-inverted">
+                                    <div class="timeline-date wow zoomIn" data-wow-delay=".2s">
+                                        Nov 01, 2015
+                                        <span>10:08 pm</span>
+                                    </div>
+                                    <div class="timeline-badge"><i class="fa fa-plane wow zoomIn"></i></div>
+                                    <div class="timeline-panel wow fadeInRight" data-wow-delay=".6s">
+                                        <div class="timeline-body">
+                                            The international shipment has been processed
+                                            <span class="location">Baker Street, UK <a
+                                                    href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&amp;hl=en&amp;t=v&amp;hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+                                                    class="popup-gmaps">view on map</a></span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section close -->
+
+
+        <!-- section begin -->
+        <section id="explore-6" class="side-bg">
+            <div class="col-md-6 col-md-offset-6 pull-right image-container">
+                <div class="background-image"></div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="inner-padding">
+                            <h2>{% trans 'Why Choose Us' %}</h2>
+                            <p class="lead">
+                                {% trans 'With more than 30 years of experience in the logistics industry, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis' %}</p>
+                            <div class="divider-deco"><span></span></div>
+
+                            <div class="marginbottom30 wow fadeInUp" data-wow-delay=".2s">
+                                <div class="box-icon-small">
+                                    <i class="mdi mdi-user"></i>
+                                    <div class="text">
+                                        <h4>{% trans 'Customer Satisfication Tools' %}</h4>
+                                        <p>{% trans 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo.' %}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="marginbottom30 wow fadeInUp" data-wow-delay=".4s">
+                                <div class="box-icon-small">
+                                    <i class="mdi mdi-chart-bar"></i>
+                                    <div class="text">
+                                        <h4>{% trans 'Management and Reporting' %}</h4>
+                                        <p>{% trans 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo.' %}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="marginbottom30 wow fadeInUp" data-wow-delay=".6s">
+                                <div class="box-icon-small">
+                                    <i class="mdi mdi-cloud-tags"></i>
+                                    <div class="text">
+                                        <h4>{% trans 'Freight Payment Solutions' %}</h4>
+                                        <p>{% trans 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo.' %}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-5 col-md-offset-2">
+                        <div class="inner-padding">
+
+                            <div class="padding40 overlaydark90 light-text">
+
+                                <h2 class="id-color">{% trans 'Gocargo Commitment' %}</h2>
+                                <div class="tiny-border"></div>
+                                <p class="lead big">
+                                    <i>{% trans 'We are commited to be the leading logistic solutions provider to our customer. We continually improving & implementing a quality management to achieve it to achieve it' %}</i>
+                                </p>
+                                <img src="img/about/signature.png" alt="">
+                                <div class="divider-single"></div>
+                                <strong>John Rukman</strong>, Vice President<br>
+                                Gocargo Inc
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+        </section>
+        <!-- section close -->
+
+        <!-- section begin -->
+        <section id="section-news" class="side-bg">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 wow fadeIn">
+                        <h2>{% trans 'Company News' %}</h2>
+                        <div class="divider-deco"><span></span></div>
+
+                        <div class="row">
+                            {% for blog in blogs|get_blogs %}
+                             <div class="col-md-4 news-item style-2">
+
+                                <figure class="pic-hover">
+                                    <span class="center-xy"></span>
+                                    <span class="bg-overlay"></span>
+                                    <img src="{{ blog.image.url }}" class="img-responsive" alt="">
+                                </figure>
+
+                                <div class="inner">
+                                    <div class="date">
+                                        <span class="day">{{ blog.created_at | date:'d' }}</span>
+                                        <span class="month">{{ blog.created_at |date:'M' }}</span>
+                                    </div>
+                                    <div class="desc">
+                                        <a href="{% url 'blogs-detail' blog.id %}">
+                                            <h4>
+                                                {% if LANGUAGE_CODE == 'uz' %}
+                                                    {{ blog.title_uz }}
+                                                {% elif LANGUAGE_CODE == 'ru' %}
+                                                    {{ blog.title_ru }}
+                                                {% elif LANGUAGE_CODE == 'tk' %}
+                                                    {{ blog.title_tk }}
+                                                {% else %}
+                                                    {{ blog.title_en }}
+                                                {% endif %}
+                                            </h4>
+                                        </a>
+                                        {% if LANGUAGE_CODE == 'uz' %}
+                                            {{ blog.description_uz | safe |slice:":250" }}
+                                        {% elif LANGUAGE_CODE == 'ru' %}
+                                            {{ blog.description_ru | safe |slice:":250" }}
+                                        {% elif LANGUAGE_CODE == 'tk' %}
+                                            {{ blog.description_ru |safe|slice:":250" }}
+                                        {% else %}
+                                            {{ blog.description_en |safe |slice:":250" }}
+                                        {% endif %}
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </section>
+        <!-- section begin -->
+        <section id="section-cta-2" class="cta light-text" data-stellar-background-ratio="0.5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="padding30 overlaydark80 wow fadeIn">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h2 class="mb0 mt10">
+                                        {% trans 'Contact us now to get quote for all your global shipping needs' %}</h2>
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    <a href="#" class="btn btn-custom">{% trans 'Contact Us' %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section close -->
+
+    </div>
+{% endblock %}

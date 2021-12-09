@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static i18n tags %}
+{% block body %}
+    <!-- subheader begin -->
+    <section id="subheader" class="page-news no-bottom">
+        <div class="inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>News</h1>
+                        <div class="crumb">
+                            <div>
+                                <ul>
+                                    <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                                    <li>{% trans 'News' %}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- subheader close -->
+
+    <div class="clearfix"></div>
+
+    <!-- content begin -->
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="newslist" class="news-list row">
+                        {% for obj in object_list %}
+                            <div class="news-item style-2 item">
+
+                                <figure class="pic-hover">
+                                    <span class="center-xy"></span>
+                                    <span class="bg-overlay"></span>
+                                    {% if obj.image %}
+                                        <img src="{{ obj.image.url }}" class="img-responsive" alt="">
+                                    {% endif %}
+                                </figure>
+
+                                <div class="inner">
+                                    <div class="date">
+                                        <span class="day">{{ obj.created_at | date:'d' }}</span>
+                                        <span class="month">{{ obj.created_at | date:'M' }}</span>
+                                    </div>
+
+                                    <div class="desc">
+                                        <a href="{% url 'blogs-detail' obj.id %}">
+                                            <h4>Gocargo Says Happy New Years</h4>
+                                        </a>
+                                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                                        himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit
+                                        amet a augue... [read more]
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                    {% if is_paginated %}
+                        <div class="text-center ">
+                            <ul class="pagination">
+                                <li>{% if page_obj.has_previous %}
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                       Prev
+                                    </a>
+                                {% endif %}
+                                </li>
+
+                                <li class="active"><a class="page-link active"
+                                                      href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+
+                                <li>{% if page_obj.has_next %}
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                        Next
+                                    </a>
+                                {% endif %}</li>
+                            </ul>
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div id="sidebar" class="col-md-4">
+                    <div class="widget">
+                        <input type="text" name="search" id="search" placeholder="search" class="form-control">
+                    </div>
+
+                    <div class="widget">
+                        <h3>Categories</h3>
+
+                        <ul class="cat-list">
+                            <li><a href="#"><i class="mdi mdi-bookmark"></i>Company News</a></li>
+                            <li><a href="#"><i class="mdi mdi-diamond"></i>Achievment</a></li>
+                            <li><a href="#"><i class="mdi mdi-globe-light"></i>Trends</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="widget">
+                        <h3>Latest Post</h3>
+
+                        <ul class="news-list">
+                            <li><a href="#"><i class="mdi mdi-newspaper"></i>Gocargo Participates at The 4th Annual</a>
+                            </li>
+                            <li><a href="#"><i class="mdi mdi-newspaper"></i>Gocargo Participates at The 4th Annual</a>
+                            </li>
+                            <li><a href="#"><i class="mdi mdi-newspaper"></i>Gocargo Participates at The 4th Annual</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- widget tags -->
+                    <div class="widget widget_tags">
+                        <h3><span>Tags</span></h3>
+                        <ul>
+                            <li><a href="#link">business</a></li>
+                            <li><a href="#link">paralax</a></li>
+                            <li><a href="#link">html 5</a></li>
+                            <li><a href="#link">css 3</a></li>
+                            <li><a href="#link">template</a></li>
+                            <li><a href="#link">clean</a></li>
+                            <li><a href="#link">flat</a></li>
+                            <li><a href="#link">revolution slider</a></li>
+                            <li><a href="#link">font awesome</a></li>
+                            <li><a href="#link">carousel</a></li>
+                            <li><a href="#link">modern</a></li>
+                            <li><a href="#link">minimalist</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="widget">
+                        <h3>Testimonials</h3>
+
+                        <div id="testi-carousel-2" class="testi-slider wow fadeIn" data-wow-delay="0s"
+                             data-wow-duration="1s">
+                            <div class="item">
+                                <blockquote>
+                                    Gocargo people professional and courteous attitude, expert knowledge and patience
+                                    handling our specific issues are very important to our customer
+
+                                </blockquote>
+                                <div class="arrow-down"></div>
+                                <div class="testi-by">
+                                    <img src="img/about/testimonials/testimonial-1.jpg" class="img-circle" alt="">
+                                    <span class="name"><strong>Jane Salima</strong>, General Manager<br>
+                                            Nexus Motors</span>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <blockquote>
+                                    Your representatives have very helpful attitude and their attention to detail help
+                                    us to move our work smoothly without any delay...good job guys
+
+                                </blockquote>
+                                <div class="arrow-down"></div>
+                                <div class="testi-by">
+                                    <img src="img/about/testimonials/testimonial-2.jpg" class="img-circle" alt="">
+                                    <span class="name"><strong>Dave Smith</strong>, Sales Manager<br>
+                                            Jepara Furniture</span>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <blockquote>
+                                    I'm really impressed by the professionalism that the Gocargo relocation. Now we stay
+                                    with our new studio at Metro city thanks Gocargo
+
+                                </blockquote>
+                                <div class="arrow-down"></div>
+                                <div class="testi-by">
+                                    <img src="img/about/testimonials/testimonial-3.jpg" class="img-circle" alt="">
+                                    <span class="name"><strong>Mike Martien</strong>, Web Designer<br>
+                                            Bamskies Studio</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

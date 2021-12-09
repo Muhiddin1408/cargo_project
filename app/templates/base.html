@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n tags %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>GoCargo - Freight, Logistics & Transportation Website Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- LOAD CSS FILES -->
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'master/css/materialdesignicons.css'%}">
+<!--    <link rel="stylesheet" href="https://github.com/FortAwesome/Font-Awesome.git">-->
+
+</head>
+
+<body>
+<div id="preloader"></div>
+<div id="wrapper">
+
+    <!-- header begin -->
+    <header>
+        <div class="container">
+            <span id="menu-btn"></span>
+
+            <div class="row">
+                <div class="col-md-3">
+
+                    <!-- logo begin -->
+                    <div id="logo">
+                        <div class="inner">
+                            <a href="{% url 'home' %}">
+                                <img src="../../media/gallery/logo.png" alt="" class="logo-1">
+                                <img src="../../media/gallery/logo.png" alt="" class="logo-2">
+                            </a>
+
+                        </div>
+                    </div>
+                    <!-- logo close -->
+
+                </div>
+
+                <div class="col-md-9">
+
+                    <!-- mainmenu begin -->
+                    <nav id="mainmenu-container">
+                        <ul id="mainmenu">
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'services' %}">Services</a></li>
+                            <li><a href="{% url 'about' %}">About Us</a></li>
+                            <li><a href="{% url 'blogs' %}">Blogs</a></li>
+                            <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <!-- mainmenu close -->
+
+                    <!-- search -->
+                    <div class="search text-right">
+                        <input type="text" name="search" id="search" placeholder="search">
+                        <button type="submit" class="btn-search-icon">
+                            <i class="mdi mdi-search-web"></i>
+                        </button>
+                    </div>
+                    <!-- social icons close -->
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header close -->
+
+    <!-- content begin -->
+    {% block body %}
+
+    {% endblock %}
+
+
+    <!-- footer begin -->
+    <footer class="sticky">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <div class="widget widget_tags">
+                        <h3>About Us</h3>
+                        <img src="img/logo.png" alt="" class="marginbottom20">
+                        <div class="clearfix"></div>
+
+                        {% if LANGUAGE_CODE == 'uz' %}
+                            {{ about.description_uz |safe |slice:":250"}}
+                        {% elif LANGUAGE_CODE == 'ru' %}
+                        {{ about.description_ru |safe |slice:":250"}}
+                        {% elif LANGUAGE_CODE == 'tk' %}
+                            {{ about.description_ru |safe |slice:":250"}}
+                        {% else %}
+                            {{ about.description_en |safe |slice:":250"}}
+                        {% endif %}
+                        <br>
+                    <a href="{% url 'about' %}" class="btn-arrow id-color hover-light"><span class="line"></span><span class=""><i class="mdi mdi-chevron-right"></i>View Details</span></a>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="widget">
+                        <h3>Twitter Feeds</h3>
+                        <div id="tweecool" class="twitter-widget"></div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="widget">
+                        <h3>Newsletter</h3>
+                        Subscribe to our newsletter and stay updated for special offers!
+                        <div class="divider"></div>
+                        <input type="text" class="form-control form-border text-center marginbottom10" name="email"
+                               id="email" placeholder="Your name"/>
+                        <input type="submit" id="send" value="Subscribe Now"
+                               class="btn btn-custom padding10 width100p"/>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="widget">
+                        <h3>Useful Links</h3>
+                        <ul class="">
+                            <li><i class="mdi mdi-chevron-right"></i><a href="{%url 'services' %}">Services</a></li>
+                            <li><i class="mdi mdi-chevron-right"></i><a href="{%url 'contact' %}">Contact Us</a></li>
+                            <li><i class="mdi mdi-chevron-right"></i><a href="{%url 'about' %}">About Us</a></li>
+                            <li><i class="mdi mdi-chevron-right"></i><a href="{%url 'gallery' %}">Gallery</a></li>
+                            <li><i class="mdi mdi-chevron-right"></i><a href="{%url 'blogs' %}">Blogs</a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="subfooter">
+            &copy; Copyright 2016 - GoCargo by ExoTheme
+        </div>
+    </footer>
+    <!-- footer close -->
+</div>
+
+<!-- LOAD JS FILES -->
+{% block script %}
+{% endblock %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.isotope.min.js' %}"></script>
+<script src="{% static 'js/easing.js' %}"></script>
+<script src="{% static 'js/jquery.ui.totop.js' %}"></script>
+<script src="{% static 'js/selectnav.js' %}"></script>
+<script src="{% static 'js/ender.js' %}"></script>
+<script src="{% static 'js/owl.carousel.js' %}"></script>
+<script src="{% static 'js/jquery.fitvids.js' %}"></script>
+<script src="{% static 'js/jquery.plugin.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/tweecool.js' %}"></script>
+<script src="{% static 'js/jquery.stellar.js' %}"></script>
+<script src="{% static 'js/typed.js' %}"></script>
+
+<!-- theme custom and plugin settings -->
+<script src="{% static 'js/custom.js' %}"></script>
+<script src="{% static 'js/custom-tweecool.js' %}"></script>
+</body>
+</html>
